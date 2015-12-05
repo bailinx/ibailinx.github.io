@@ -1,5 +1,5 @@
 title: github如何贡献自己的代码
-tags: github git
+tags: [github,git]
 categories: github
 ---
 
