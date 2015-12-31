@@ -159,3 +159,37 @@ function handleEvent(event) {
 不知道大家注意到没有，Dean Edwards并没有使用`addEventListener`来绑定事件，触发事件也是自己实现的`handleEvent`方法，为何这样？
 
 回到最开始探究的问题（js如何绑定匿名方法事件），返回到`EventUtil`，看`移除注册`这里。注意`removeHandler`第三个参数，必须有`handler`。那么问题来了，如果绑定的时候`EventUtil.addHandler(doc, 'click', function () {})`，如何移除`click`事件？答案自然有了。
+
+## 题外话
+上面处理事件的方法，并不是完全体，最新请看[这里](http://dean.edwards.name/my/events.js):
+```javascript
+// 调用的地方改为
+event = event || fixEvent(((this.ownerDocument || this.document || this).parentWindow || window).event);
+
+function fixEvent(event) {
+  // add W3C standard event methods
+  // 添加标准的W3C事件方法(主要针对IE)
+  // 阻止浏览器默认行为
+  event.preventDefault = fixEvent.preventDefault;
+  // 阻止冒泡
+  event.stopPropagation = fixEvent.stopPropagation;
+  return event;
+};
+fixEvent.preventDefault = function() {
+  this.returnValue = false;
+};
+fixEvent.stopPropagation = function() {
+  this.cancelBubble = true;
+};
+```
+为啥增加这个补丁（为啥要阻止这两个事件？试试给submit绑定click事件就明白了）？且看IE/FF两种事件的区别：
+```javascript
+// IE
+window.event.cancelBubble = true;//停止冒泡
+window.event.returnValue = false;//阻止事件的默认行为
+
+// FF
+event.preventDefault();//阻止事件的默认行为
+event.stopPropagation();//阻止事件的传播
+```
+巧妙的解决IE下兼容问题。
