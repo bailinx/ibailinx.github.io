@@ -193,10 +193,16 @@
       <div class="body-wrap">
   
     <article id="post-js-event" class="article article-type-post" itemscope itemprop="blogPost">
+<<<<<<< HEAD
   
     <div class="article-meta">
       <a href="/2016/01/01/js-event/" class="article-date">
   	<time datetime="2016-01-01T05:25:33.795Z" itemprop="datePublished">2016-01-01</time>
+=======
+  
+    <div class="article-meta">
+      <a href="/2015/12/30/js-event/" class="article-date">
+  	<time datetime="2015-12-30T02:55:02.850Z" itemprop="datePublished">2015-12-30</time>
 </a>
     </div>
   
@@ -209,7 +215,81 @@
         
   
     <h1 itemprop="name">
+      <a class="article-title" href="/2015/12/30/js-event/">深入理解JavaScript事件系统</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="u6DF1_u5165_u7406_u89E3JavaScript_u4E8B_u4EF6_u7CFB_u7EDF"><a href="#u6DF1_u5165_u7406_u89E3JavaScript_u4E8B_u4EF6_u7CFB_u7EDF" class="headerlink" title="深入理解JavaScript事件系统"></a>深入理解JavaScript事件系统</h1><p>之前研究重写alert/confirm时，曾遇到一问题：js如何绑定和销毁匿名方法事件。怀着这个问题，一起来研究一下js的事件系统。</p>
+<h2 id="DOM0_u4E8B_u4EF6_u6A21_u578B"><a href="#DOM0_u4E8B_u4EF6_u6A21_u578B" class="headerlink" title="DOM0事件模型"></a>DOM0事件模型</h2><p>DOM0事件模型就是直接在Dom对象上注册事件名称，所有浏览器均支持，形如<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">"btn"</span>).onclick = <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">    alert(<span class="string">'test'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 一个意思</span></span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">"btn"</span>)[<span class="string">"onclick"</span>] = <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">    alert(<span class="string">'test'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 当然通过函数式调用也是一样</span></span><br><span class="line"><span class="keyword">var</span> btn = <span class="built_in">document</span>.getElementById(<span class="string">"btn"</span>);</span><br><span class="line">btn.onclick = <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">    alert(<span class="string">'test'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 解除事件</span></span><br><span class="line">btn.onclick = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 但如果多次绑定同一事件，后绑定的将覆盖先绑定的，Demo中有验证</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="DOM2_u4E8B_u4EF6_u6A21_u578B"><a href="#DOM2_u4E8B_u4EF6_u6A21_u578B" class="headerlink" title="DOM2事件模型"></a>DOM2事件模型</h2><p>DOM2事件模型将事件通过<code>addEventListener</code>和<code>removeEventListener</code>管理，新增了事件冒泡和捕获，同时也支持元素绑定多个事件，要注意的是低版本IE必须用<code>attachEvent</code>代替。jquery 1.10以前是这样实现事件的绑定：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Bind the global event handler to the element</span></span><br><span class="line"><span class="comment">// 在元素上绑定全局事件处理</span></span><br><span class="line"><span class="keyword">if</span> ( elem.addEventListener ) &#123;</span><br><span class="line">    elem.addEventListener( type, eventHandle, <span class="literal">false</span> );</span><br><span class="line"></span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> ( elem.attachEvent ) &#123;</span><br><span class="line">    <span class="comment">// IE9以下兼容(IE确实有点自娱自乐的感觉)</span></span><br><span class="line">    elem.attachEvent( <span class="string">"on"</span> + type, eventHandle );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>解除绑定也做了兼容处理：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">jQuery.removeEvent = <span class="built_in">document</span>.removeEventListener ?</span><br><span class="line">    <span class="function"><span class="keyword">function</span>(<span class="params"> elem, type, handle </span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> ( elem.removeEventListener ) &#123;</span><br><span class="line">            <span class="comment">// 第三个参数false是作用于冒泡阶段(addEventListener相同)</span></span><br><span class="line">            <span class="comment">// 第三个参数true是作用于事件捕获阶段</span></span><br><span class="line">            elem.removeEventListener( type, handle, <span class="literal">false</span> );</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; :</span><br><span class="line">    <span class="function"><span class="keyword">function</span>(<span class="params"> elem, type, handle </span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> name = <span class="string">"on"</span> + type;</span><br><span class="line">        <span class="comment">// 如果浏览器支持detachEvent</span></span><br><span class="line">        <span class="keyword">if</span> ( elem.detachEvent ) &#123;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// #8545, #7054, preventing memory leaks for custom events in IE6-8</span></span><br><span class="line">            <span class="comment">// detachEvent needed property on element, by name of that event, to properly expose it to GC</span></span><br><span class="line">            <span class="comment">// IE6-8自定义事件存在内存泄露问题，解除事件时需要释放引用，深入研究内存泄露(http://www.cnblogs.com/fsjohnhuang/p/4455822.html)</span></span><br><span class="line">            <span class="keyword">if</span> ( <span class="keyword">typeof</span> elem[ name ] === core_strundefined ) &#123;</span><br><span class="line">                elem[ name ] = <span class="literal">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 解除事件</span></span><br><span class="line">            elem.detachEvent( name, handle );</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="u4E8B_u4EF6_u7CFB_u7EDF"><a href="#u4E8B_u4EF6_u7CFB_u7EDF" class="headerlink" title="事件系统"></a>事件系统</h2><p>既然了解事件绑定模型，书写一个简要的事件处理系统也不是一个难事。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引用自冰极峰&lt;http://www.cnblogs.com/binyong/articles/1750263.html&gt;</span></span><br><span class="line"><span class="keyword">var</span> EventUtil = &#123;</span><br><span class="line">  <span class="comment">//注册</span></span><br><span class="line">  addHandler: <span class="function"><span class="keyword">function</span>(<span class="params">element, type, handler</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (element.addEventListener)&#123;</span><br><span class="line">      element.addEventListener(type, handler, <span class="literal">false</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (element.attachEvent)&#123;</span><br><span class="line">      element.attachEvent(<span class="string">"on"</span> + type, handler);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      element[<span class="string">"on"</span> + type] = handler;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">//移除注册</span></span><br><span class="line">  removeHandler: <span class="function"><span class="keyword">function</span>(<span class="params">element, type, handler</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (element.removeEventListener)&#123;</span><br><span class="line">        element.removeEventListener(type, handler, <span class="literal">false</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (element.detachEvent)&#123;</span><br><span class="line">        element.detachEvent(<span class="string">"on"</span> + type, handler);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        element[<span class="string">"on"</span> + type] = <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>上面代码不难理解，一般js类库(插件)也是这样实现。说到这，不得不提<a href="http://dean.edwards.name/weblog/2005/10/add-event/" target="_blank" rel="external">Dean Edwards</a>大神,来看看他是怎么实现的:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addEvent</span>(<span class="params">element, type, handler</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// assign each event handler a unique ID</span></span><br><span class="line">  <span class="comment">// 给每个事件赋予一个唯一ID</span></span><br><span class="line">  <span class="keyword">if</span> (!handler.$$guid) handler.$$guid = addEvent.guid++;</span><br><span class="line">  <span class="comment">// create a hash table of event types for the element</span></span><br><span class="line">  <span class="comment">// 创建一个事件的hash表</span></span><br><span class="line">  <span class="keyword">if</span> (!element.events) element.events = &#123;&#125;;</span><br><span class="line">  <span class="comment">// create a hash table of event handlers for each element/event pair</span></span><br><span class="line">  <span class="comment">// 为每个元素/事件建立一个hash表</span></span><br><span class="line">  <span class="keyword">var</span> handlers = element.events[type];</span><br><span class="line">  <span class="keyword">if</span> (!handlers) &#123;</span><br><span class="line">    handlers = element.events[type] = &#123;&#125;;</span><br><span class="line">    <span class="comment">// store the existing event handler (if there is one)</span></span><br><span class="line">    <span class="comment">// 如果事件列表中不存在该类型的事件，挂载至事件列表</span></span><br><span class="line">    <span class="keyword">if</span> (element[<span class="string">"on"</span> + type]) &#123;</span><br><span class="line">      handlers[<span class="number">0</span>] = element[<span class="string">"on"</span> + type];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// store the event handler in the hash table</span></span><br><span class="line">  <span class="comment">// 保存事件句柄到hash表(这里很巧妙，$$guid是个唯一自增的索引)</span></span><br><span class="line">  handlers[handler.$$guid] = handler;</span><br><span class="line">  <span class="comment">// assign a global event handler to do all the work</span></span><br><span class="line">  <span class="comment">// 赋值一个全局事件处理</span></span><br><span class="line">  element[<span class="string">"on"</span> + type] = handleEvent;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// a counter used to create unique IDs</span></span><br><span class="line"><span class="comment">// 初始化计数器</span></span><br><span class="line">addEvent.guid = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">removeEvent</span>(<span class="params">element, type, handler</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// delete the event handler from the hash table</span></span><br><span class="line">  <span class="keyword">if</span> (element.events &amp;&amp; element.events[type]) &#123;</span><br><span class="line">    <span class="comment">// 注意这里是delete，不是赋null</span></span><br><span class="line">    <span class="keyword">delete</span> element.events[type][handler.$$guid];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 事件处理方法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">handleEvent</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// grab the event object (IE uses a global event object)</span></span><br><span class="line">  <span class="comment">// 获取事件对象(IE下获取全局事件对象)</span></span><br><span class="line">  event = event || <span class="built_in">window</span>.event;</span><br><span class="line">  <span class="comment">// get a reference to the hash table of event handlers</span></span><br><span class="line">  <span class="comment">// 获取当前类型的事件队列</span></span><br><span class="line">  <span class="keyword">var</span> handlers = <span class="keyword">this</span>.events[event.type];</span><br><span class="line">  <span class="comment">// execute each event handler</span></span><br><span class="line">  <span class="comment">//  执行每个处理函数</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i <span class="keyword">in</span> handlers) &#123;</span><br><span class="line">    <span class="keyword">this</span>.$$handleEvent = handlers[i];</span><br><span class="line">    <span class="keyword">this</span>.$$handleEvent(event);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>不知道大家注意到没有，Dean Edwards并没有使用<code>addEventListener</code>来绑定事件，触发事件也是自己实现的<code>handleEvent</code>方法，为何这样？</p>
+<p>回到最开始探究的问题（js如何绑定匿名方法事件），返回到<code>EventUtil</code>，看<code>移除注册</code>这里。注意<code>removeHandler</code>第三个参数，必须有<code>handler</code>。那么问题来了，如果绑定的时候<code>EventUtil.addHandler(doc, &#39;click&#39;, function () {})</code>，如何移除<code>click</code>事件？答案自然有了。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js-event/">js-event</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/javascript/">javascript</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-github-contribute" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/12/17/github-contribute/" class="article-date">
+  	<time datetime="2015-12-17T08:27:38.978Z" itemprop="datePublished">2015-12-17</time>
+>>>>>>> dd23cbb9d90c3ca0b215f61c618f3f43b8d1e25a
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+<<<<<<< HEAD
       <a class="article-title" href="/2016/01/01/js-event/">深入理解JavaScript事件系统</a>
+=======
+      <a class="article-title" href="/2015/12/17/github-contribute/">github如何贡献自己的代码</a>
+>>>>>>> dd23cbb9d90c3ca0b215f61c618f3f43b8d1e25a
     </h1>
   
 
@@ -240,12 +320,20 @@
       
       
 	<div class="article-tag tagcloud">
+<<<<<<< HEAD
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js-event/">js-event</a></li></ul>
+=======
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li></ul>
+>>>>>>> dd23cbb9d90c3ca0b215f61c618f3f43b8d1e25a
 	</div>
 
       
 	<div class="article-category tagcloud">
+<<<<<<< HEAD
 	<a class="article-category-link" href="/categories/前端/">前端</a>
+=======
+	<a class="article-category-link" href="/categories/github/">github</a>
+>>>>>>> dd23cbb9d90c3ca0b215f61c618f3f43b8d1e25a
 	</div>
 
 
@@ -267,8 +355,13 @@
     <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
+<<<<<<< HEAD
       <a href="/2016/01/01/hello-world/" class="article-date">
   	<time datetime="2016-01-01T05:20:14.259Z" itemprop="datePublished">2016-01-01</time>
+=======
+      <a href="/2015/12/17/hello-world/" class="article-date">
+  	<time datetime="2015-12-17T08:27:17.373Z" itemprop="datePublished">2015-12-17</time>
+>>>>>>> dd23cbb9d90c3ca0b215f61c618f3f43b8d1e25a
 </a>
     </div>
   
@@ -281,7 +374,11 @@
         
   
     <h1 itemprop="name">
+<<<<<<< HEAD
       <a class="article-title" href="/2016/01/01/hello-world/">Hello World</a>
+=======
+      <a class="article-title" href="/2015/12/17/hello-world/">Hello World</a>
+>>>>>>> dd23cbb9d90c3ca0b215f61c618f3f43b8d1e25a
     </h1>
   
 
@@ -291,13 +388,13 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<h2 id="Quick_Start"><a href="#Quick_Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create_a_new_post"><a href="#Create_a_new_post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
 <p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<h3 id="Run_server"><a href="#Run_server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
 <p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<h3 id="Generate_static_files"><a href="#Generate_static_files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
 <p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<h3 id="Deploy_to_remote_sites"><a href="#Deploy_to_remote_sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 <p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
 
       
