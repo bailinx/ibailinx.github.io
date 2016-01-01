@@ -3,17 +3,33 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Tag: git | 百里的博客</title>
+  <title>github如何贡献自己的代码 | 百里的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="百里的博客">
-<meta property="og:url" content="http://b.66tools.com/tags/git/index.html">
+  <meta name="description" content="Github不用多说，基本都用过，但常用的就几个命令，git add . , git commit -m , git push神马的，如果说单机开发，或许足够了。不过要为某一项目共享自己力量，请遵循如下步奏：
+首先fork开源项目
+
+把fork过去的项目也就是你的项目clone到你的本地
+在命令行运行git branch develop来创建一个新分支
+运行git checkout develop">
+<meta property="og:type" content="article">
+<meta property="og:title" content="github如何贡献自己的代码">
+<meta property="og:url" content="http://b.66tools.com/2015/12/06/github-contribute/index.html">
 <meta property="og:site_name" content="百里的博客">
-<meta property="og:description">
+<meta property="og:description" content="Github不用多说，基本都用过，但常用的就几个命令，git add . , git commit -m , git push神马的，如果说单机开发，或许足够了。不过要为某一项目共享自己力量，请遵循如下步奏：
+首先fork开源项目
+
+把fork过去的项目也就是你的项目clone到你的本地
+在命令行运行git branch develop来创建一个新分支
+运行git checkout develop">
+<meta property="og:updated_time" content="2016-01-01T05:29:04.442Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="百里的博客">
-<meta name="twitter:description">
+<meta name="twitter:title" content="github如何贡献自己的代码">
+<meta name="twitter:description" content="Github不用多说，基本都用过，但常用的就几个命令，git add . , git commit -m , git push神马的，如果说单机开发，或许足够了。不过要为某一项目共享自己力量，请遵循如下步奏：
+首先fork开源项目
+
+把fork过去的项目也就是你的项目clone到你的本地
+在命令行运行git branch develop来创建一个新分支
+运行git checkout develop">
   
     <link rel="alternative" href="/atom.xml" title="百里的博客" type="application/atom+xml">
   
@@ -190,57 +206,129 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-github-contribute" class="article article-type-post" itemscope itemprop="blogPost">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2015" class="archive-year">2015</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2015/12/06/github-contribute/" class="archive-article-date">
-  	<time datetime="2015-12-06T12:39:07.000Z" itemprop="datePublished">Dec 6</time>
+    <div class="article-meta">
+      <a href="/2015/12/06/github-contribute/" class="article-date">
+  	<time datetime="2015-12-06T12:39:07.000Z" itemprop="datePublished">2015-12-06</time>
 </a>
-        </div>
-    	 
+    </div>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/12/06/github-contribute/">github如何贡献自己的代码</a>
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      github如何贡献自己的代码
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+      </header>
+      
+      <div class="article-info article-info-post">
+        
 	<div class="article-tag tagcloud">
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li></ul>
 	</div>
 
-          
+        
 	<div class="article-category tagcloud">
 	<a class="article-category-link" href="/categories/技巧/">技巧</a>
 	</div>
 
 
-        </div>
         <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
+      </div>
+      
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Github不用多说，基本都用过，但常用的就几个命令，<code>git add .</code> , <code>git commit -m</code> , <code>git push</code>神马的，如果说单机开发，或许足够了。不过要为某一项目共享自己力量，请遵循如下步奏：</p>
+<p>首先fork开源项目</p>
+<ul>
+<li>把fork过去的项目也就是你的项目clone到你的本地</li>
+<li>在命令行运行<code>git branch develop</code>来创建一个新分支</li>
+<li>运行<code>git checkout develop</code>来切换到新分支</li>
+<li>运行<code>git remote add upstream</code>远端地址 把开源库添加为远端库</li>
+<li>运行<code>git remote update</code>更新</li>
+<li>运行<code>git fetch upstream gh-pages(你的工作分支)</code>拉取远端库的更新到本地</li>
+<li>运行<code>git rebase upstream/gh-pages(你的工作分支)</code>将远端更新合并到你的分支</li>
+<li>这是一个初始化流程，只需要做一遍就行，之后请一直在develop分支进行修改。</li>
+</ul>
+<p>如果修改过程中源库有了更新，请重复6、7、8步。</p>
+<p>修改之后，首先push到你的库，然后登录GitHub，在你的库的首页可以看到一个pull request 按钮，点击它，填写一些说明信息，然后提交即可。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/12/29/js-event/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          深入理解JavaScript事件系统
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/12/05/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hello World</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="github-contribute" data-title="github如何贡献自己的代码" data-url="http://b.66tools.com/2015/12/06/github-contribute/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"ibaili"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
 
 </div>
       <footer id="footer">
@@ -267,9 +355,9 @@
 		mathjax: true,
 		animate: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false
 	}
