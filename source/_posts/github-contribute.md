@@ -1,6 +1,7 @@
 title: github如何贡献自己的代码
+date: 2015-12-06 20:39:07
 tags: [github,git]
-categories: github
+categories: 技巧
 ---
 
 Github不用多说，基本都用过，但常用的就几个命令，`git add .` , `git commit -m` , `git push`神马的，如果说单机开发，或许足够了。不过要为某一项目共享自己力量，请遵循如下步奏：

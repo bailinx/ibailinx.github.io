@@ -1,6 +1,7 @@
 title: 深入理解JavaScript事件系统
+date: 2015-12-29 22:06:02
 tags: [javascript,js-event]
-categories: javascript
+categories: 前端
 ---
 
 # 深入理解JavaScript事件系统
