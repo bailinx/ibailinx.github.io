@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Restful资源命名规范 | 百里的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Restful资源命名规范协议API与用户通信，总是使用HTTPS协议
+域名应尽量部署到专用域名之下1httpsapi.example.com
+版本应将API的版本放入URL中1httpsapi.expamle.comv1..
+若API总是向下兼容可省略版本号
+URIURI表示资源，资源一般对应服务器端领域模型中的实体类
+URI规范
+不用大写
+用中杠-不用下划线_
+参数列表要经过urlencode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Restful资源命名规范">
+<meta property="og:url" content="http://b.66tools.com/2016/03/04/restful-guide/index.html">
+<meta property="og:site_name" content="百里的博客">
+<meta property="og:description" content="Restful资源命名规范协议API与用户通信，总是使用HTTPS协议
+域名应尽量部署到专用域名之下1httpsapi.example.com
+版本应将API的版本放入URL中1httpsapi.expamle.comv1..
+若API总是向下兼容可省略版本号
+URIURI表示资源，资源一般对应服务器端领域模型中的实体类
+URI规范
+不用大写
+用中杠-不用下划线_
+参数列表要经过urlencode">
+<meta property="og:updated_time" content="2016-03-04T01:11:26.562Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Restful资源命名规范">
+<meta name="twitter:description" content="Restful资源命名规范协议API与用户通信，总是使用HTTPS协议
+域名应尽量部署到专用域名之下1httpsapi.example.com
+版本应将API的版本放入URL中1httpsapi.expamle.comv1..
+若API总是向下兼容可省略版本号
+URIURI表示资源，资源一般对应服务器端领域模型中的实体类
+URI规范
+不用大写
+用中杠-不用下划线_
+参数列表要经过urlencode">
+  
+    <link rel="alternative" href="/atom.xml" title="百里的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="https://avatars3.githubusercontent.com/u/9367897?v=3&amp;s=460" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">百 里</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">一个爱折腾的程序猿</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/categories/前端">前端技术</a></li>
+				        
+							<li><a href="/categories/技巧">技巧分享</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/radishj" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/66tools" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="http://b.66tools.com/atom.xml" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Hello/" style="font-size: 10px;">Hello</a> <a href="/tags/api/" style="font-size: 10px;">api</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/guide/" style="font-size: 10px;">guide</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/js-event/" style="font-size: 10px;">js-event</a> <a href="/tags/restful/" style="font-size: 10px;">restful</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.66tools.com">66在线工具</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.66tools.com">百里博客</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">宅，吃货，不帅</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">百 里</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="https://avatars3.githubusercontent.com/u/9367897?v=3&amp;s=460" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">百 里</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">一个爱折腾的程序猿</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/categories/前端">前端技术</a></li>
+		        
+					<li><a href="/categories/技巧">技巧分享</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/radishj" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/66tools" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="http://b.66tools.com/atom.xml" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-restful-guide" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/04/restful-guide/" class="article-date">
+  	<time datetime="2016-03-04T07:21:39.000Z" itemprop="datePublished">2016-03-04</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Restful资源命名规范
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/api/">api</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/guide/">guide</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/restful/">restful</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/guide/">guide</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Restful_u8D44_u6E90_u547D_u540D_u89C4_u8303"><a href="#Restful_u8D44_u6E90_u547D_u540D_u89C4_u8303" class="headerlink" title="Restful资源命名规范"></a>Restful资源命名规范</h1><h2 id="u534F_u8BAE"><a href="#u534F_u8BAE" class="headerlink" title="协议"></a>协议</h2><p>API与用户通信，总是使用HTTPS协议</p>
+<h2 id="u57DF_u540D"><a href="#u57DF_u540D" class="headerlink" title="域名"></a>域名</h2><p>应尽量部署到专用域名之下<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">httpsapi<span class="class">.example</span><span class="class">.com</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="u7248_u672C"><a href="#u7248_u672C" class="headerlink" title="版本"></a>版本</h2><p>应将API的版本放入URL中<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">httpsapi<span class="class">.expamle</span><span class="class">.comv1</span>..</span><br></pre></td></tr></table></figure></p>
+<p>若API总是向下兼容可省略版本号</p>
+<h2 id="URI"><a href="#URI" class="headerlink" title="URI"></a>URI</h2><p>URI表示资源，资源一般对应服务器端领域模型中的实体类</p>
+<h3 id="URI_u89C4_u8303"><a href="#URI_u89C4_u8303" class="headerlink" title="URI规范"></a>URI规范</h3><ol>
+<li>不用大写</li>
+<li>用中杠<code>-</code>不用下划线<code>_</code></li>
+<li>参数列表要经过urlencode</li>
+<li>URI中的名词表示资源集合，使用复数形式</li>
+</ol>
+<p>单个资源<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">airlinesca  获取CA的详细信息</span><br><span class="line">airlinesca,mu,<span class="number">3u</span>  请求ca,mu,<span class="number">3u</span>的详细信息</span><br></pre></td></tr></table></figure></p>
+<p>资源集合：<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">airlines</span>  所有航空公司</span><br><span class="line">airlinescaflight  ID为ca的航空公司中的所有航班（当然后面得加上日期）</span><br></pre></td></tr></table></figure></p>
+<h2 id="Request"><a href="#Request" class="headerlink" title="Request"></a>Request</h2><p>前端请求规范</p>
+<h3 id="HTTP_u65B9_u6CD5"><a href="#HTTP_u65B9_u6CD5" class="headerlink" title="HTTP方法"></a>HTTP方法</h3><p>通过标准HTTP方法对资源CRUD</p>
+<p>GET：查询<br><figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GET</span> airlines</span><br><span class="line"><span class="keyword">GET</span> airlinesca</span><br><span class="line"><span class="keyword">GET</span> airlinescaemployees</span><br></pre></td></tr></table></figure></p>
+<p>POST：创建单个资源<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">POST</span> airlinescaemployees  创建<span class="keyword">CA</span>员工</span><br></pre></td></tr></table></figure></p>
+<p>PUT：更新单个资源(全量更新)<br><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PUT airli<span class="label">nescaemployees090100</span></span><br></pre></td></tr></table></figure></p>
+<p>PATCH：更新单个资源(更新部分字段，用的比较少)<br><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PATCH airli<span class="label">nescaemployees090100</span></span><br></pre></td></tr></table></figure></p>
+<p>DELET：删除<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> airlinescaemployees090100</span><br><span class="line"><span class="keyword">DELETE</span> airlinescaemployees090100,<span class="number">090101</span>,<span class="number">090102</span></span><br><span class="line"><span class="keyword">DELETE</span> airlinescaemployees  删除所有员工（必须有对应的权限）</span><br></pre></td></tr></table></figure></p>
+<h2 id="u590D_u6742_u67E5_u8BE2"><a href="#u590D_u6742_u67E5_u8BE2" class="headerlink" title="复杂查询"></a>复杂查询</h2><p>如果查询数量很多，服务器不可能将它们去都返回给用户。API应该提供参数，过滤返回结果<br>一些常见的参数示例：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">limit=<span class="number">10</span>：指定返回记录的数量</span><br><span class="line">offset=<span class="number">10</span>：指定返回记录的开始位置。</span><br><span class="line">page=<span class="number">2</span>&amp;per_page=<span class="number">100</span>：指定第几页，以及每页的记录数。</span><br><span class="line">sortby=name&amp;order=asc：指定返回结果按照哪个属性排序，以及排序顺序。</span><br><span class="line">animal_type_id=<span class="number">1</span>：指定筛选条件</span><br></pre></td></tr></table></figure></p>
+<h2 id="u72B6_u6001_u7801"><a href="#u72B6_u6001_u7801" class="headerlink" title="状态码"></a>状态码</h2><p>RESTFUL接口对每次请求均会返回状态码，其中一些常用的状态码如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">200</span> OK - [GET]：服务器成功返回用户请求的数据，该操作是幂等的（Idempotent）。</span><br><span class="line"><span class="number">201</span> CREATED - [POSTPUTPATCH]：用户新建或修改数据成功。</span><br><span class="line"><span class="number">202</span> Accepted - []：表示一个请求已经进入后台排队（异步任务）</span><br><span class="line"><span class="number">204</span> NO CONTENT - [DELETE]：用户删除数据成功。</span><br><span class="line"><span class="number">400</span> INVALID REQUEST - [POSTPUTPATCH]：用户发出的请求有错误，服务器没有进行新建或修改数据的操作，该操作是幂等的。</span><br><span class="line"><span class="number">401</span> Unauthorized - []：表示用户没有权限（令牌、用户名、密码错误）。</span><br><span class="line"><span class="number">403</span> Forbidden - [] 表示用户得到授权（与<span class="number">401</span>错误相对），但是访问是被禁止的。</span><br><span class="line"><span class="number">404</span> NOT FOUND - []：用户发出的请求针对的是不存在的记录，服务器没有进行操作，该操作是幂等的。</span><br><span class="line"><span class="number">406</span> Not Acceptable - [GET]：用户请求的格式不可得（比如用户请求JSON格式，但是只有XML格式）。</span><br><span class="line"><span class="number">410</span> Gone -[GET]：用户请求的资源被永久删除，且不会再得到的。</span><br><span class="line"><span class="number">422</span> Unprocesable entity - [POSTPUTPATCH] 当创建一个对象时，发生一个验证错误。</span><br><span class="line"><span class="number">500</span> INTERNAL SERVER ERROR - []：服务器发生错误，用户将无法判断发出的请求是否成功。</span><br></pre></td></tr></table></figure></p>
+<h2 id="u9519_u8BEF_u5904_u7406"><a href="#u9519_u8BEF_u5904_u7406" class="headerlink" title="错误处理"></a>错误处理</h2><p>如果状态码是4XX，就应该向用户返回错误信息。一般项目中将error作为键名，出错信息作为键值即可。<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> <span class="title">API</span> Key</span><br><span class="line">&#123;</span><br><span class="line">    <span class="title">error</span> Invalid API key</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="u8FD4_u56DE_u7ED3_u679C"><a href="#u8FD4_u56DE_u7ED3_u679C" class="headerlink" title="返回结果"></a>返回结果</h2><p>对每次请求结果进行约定<br><figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GET</span> airlines：返回资源对象的列表（数组）</span><br><span class="line"><span class="keyword">GET</span> airlinesca：返回单个资源对象</span><br><span class="line">POST airlinescaemployees：返回新生成的资源对象</span><br><span class="line">PUT airlinescaemployees：返回完整的资源对象</span><br><span class="line">PATCH airlinescaemployees：返回完整的资源对象</span><br><span class="line">DELETE airlinescaemployees090100：返回一个空文档</span><br></pre></td></tr></table></figure></p>
+<h2 id="u5176_u4ED6"><a href="#u5176_u4ED6" class="headerlink" title="其他"></a>其他</h2><ol>
+<li>服务器返回结果时，应尽量使用JSON，避免使用XML</li>
+<li>URI失效时应会失效的API返回404或者410，对迁移的API使用301重定向</li>
+</ol>
+<h2 id="u53C2_u8003_u6587_u6863"><a href="#u53C2_u8003_u6587_u6863" class="headerlink" title="参考文档"></a>参考文档</h2><ol>
+<li><a href="httpwww.ruanyifeng.comblog201405restful_api.html">RESTful API 设计指南</a></li>
+<li><a href="httpnovoland.github.io%E8%AE%BE%E8%AE%A120150817Restful%20API%20%E7%9A%84%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83.html">Restful API 的设计规范</a></li>
+</ol>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/12/29/js-event/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">深入理解JavaScript事件系统</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="restful-guide" data-title="Restful资源命名规范" data-url="http://b.66tools.com/2016/03/04/restful-guide/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"ibaili"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 百 里
+    	</div>
+      	<div class="footer-right">
+      		<a href="www.miitbeian.gov.cn" target="_blank">渝ICP备15002906号</a>
+      	</div>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
