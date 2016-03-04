@@ -9,11 +9,11 @@
 DOM0事件模型DOM0事件模型就是直接在Dom对象上注册事件名称，所有浏览器均支持，形如12345678910111213141516document.getElementById(&quot;btn&quot;).onclick = functi">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深入理解JavaScript事件系统">
-<meta property="og:url" content="http://b.66tools.com/2015/12/30/js-event/index.html">
+<meta property="og:url" content="http://b.66tools.com/2015/12/29/js-event/index.html">
 <meta property="og:site_name" content="百里的博客">
 <meta property="og:description" content="深入理解JavaScript事件系统之前研究重写alert/confirm时，曾遇到一问题：js如何绑定和销毁匿名方法事件。怀着这个问题，一起来研究一下js的事件系统。
 DOM0事件模型DOM0事件模型就是直接在Dom对象上注册事件名称，所有浏览器均支持，形如12345678910111213141516document.getElementById(&quot;btn&quot;).onclick = functi">
-<meta property="og:updated_time" content="2015-12-30T02:55:02.847Z">
+<meta property="og:updated_time" content="2016-03-03T09:00:03.493Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解JavaScript事件系统">
 <meta name="twitter:description" content="深入理解JavaScript事件系统之前研究重写alert/confirm时，曾遇到一问题：js如何绑定和销毁匿名方法事件。怀着这个问题，一起来研究一下js的事件系统。
@@ -98,6 +98,10 @@ DOM0事件模型DOM0事件模型就是直接在Dom对象上注册事件名称，
 				        
 							<li><a href="/archives">所有文章</a></li>
 				        
+							<li><a href="/categories/前端">前端技术</a></li>
+				        
+							<li><a href="/categories/技巧">技巧分享</a></li>
+				        
 						</ul>
 					</nav>
 					<nav class="header-nav">
@@ -116,7 +120,7 @@ DOM0事件模型DOM0事件模型就是直接在Dom对象上注册事件名称，
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Hello/" style="font-size: 10px;">Hello</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/js-event/" style="font-size: 10px;">js-event</a>
+						<a href="/tags/Hello/" style="font-size: 10px;">Hello</a> <a href="/tags/api/" style="font-size: 10px;">api</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/guide/" style="font-size: 10px;">guide</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/js-event/" style="font-size: 10px;">js-event</a> <a href="/tags/restful/" style="font-size: 10px;">restful</a>
 					</div>
 				</section>
 				
@@ -169,6 +173,10 @@ DOM0事件模型DOM0事件模型就是直接在Dom对象上注册事件名称，
 		        
 					<li><a href="/archives">所有文章</a></li>
 		        
+					<li><a href="/categories/前端">前端技术</a></li>
+		        
+					<li><a href="/categories/技巧">技巧分享</a></li>
+		        
 		        <div class="clearfix"></div>
 				</ul>
 			</nav>
@@ -189,8 +197,8 @@ DOM0事件模型DOM0事件模型就是直接在Dom对象上注册事件名称，
       <div class="body-wrap"><article id="post-js-event" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/12/30/js-event/" class="article-date">
-  	<time datetime="2015-12-30T02:55:02.850Z" itemprop="datePublished">2015-12-30</time>
+      <a href="/2015/12/29/js-event/" class="article-date">
+  	<time datetime="2015-12-29T14:06:02.000Z" itemprop="datePublished">2015-12-29</time>
 </a>
     </div>
   
@@ -217,7 +225,7 @@ DOM0事件模型DOM0事件模型就是直接在Dom对象上注册事件名称，
 
         
 	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/javascript/">javascript</a>
+	<a class="article-category-link" href="/categories/前端/">前端</a>
 	</div>
 
 
@@ -238,6 +246,9 @@ DOM0事件模型DOM0事件模型就是直接在Dom对象上注册事件名称，
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addEvent</span>(<span class="params">element, type, handler</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// assign each event handler a unique ID</span></span><br><span class="line">  <span class="comment">// 给每个事件赋予一个唯一ID</span></span><br><span class="line">  <span class="keyword">if</span> (!handler.$$guid) handler.$$guid = addEvent.guid++;</span><br><span class="line">  <span class="comment">// create a hash table of event types for the element</span></span><br><span class="line">  <span class="comment">// 创建一个事件的hash表</span></span><br><span class="line">  <span class="keyword">if</span> (!element.events) element.events = &#123;&#125;;</span><br><span class="line">  <span class="comment">// create a hash table of event handlers for each element/event pair</span></span><br><span class="line">  <span class="comment">// 为每个元素/事件建立一个hash表</span></span><br><span class="line">  <span class="keyword">var</span> handlers = element.events[type];</span><br><span class="line">  <span class="keyword">if</span> (!handlers) &#123;</span><br><span class="line">    handlers = element.events[type] = &#123;&#125;;</span><br><span class="line">    <span class="comment">// store the existing event handler (if there is one)</span></span><br><span class="line">    <span class="comment">// 如果事件列表中不存在该类型的事件，挂载至事件列表</span></span><br><span class="line">    <span class="keyword">if</span> (element[<span class="string">"on"</span> + type]) &#123;</span><br><span class="line">      handlers[<span class="number">0</span>] = element[<span class="string">"on"</span> + type];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// store the event handler in the hash table</span></span><br><span class="line">  <span class="comment">// 保存事件句柄到hash表(这里很巧妙，$$guid是个唯一自增的索引)</span></span><br><span class="line">  handlers[handler.$$guid] = handler;</span><br><span class="line">  <span class="comment">// assign a global event handler to do all the work</span></span><br><span class="line">  <span class="comment">// 赋值一个全局事件处理</span></span><br><span class="line">  element[<span class="string">"on"</span> + type] = handleEvent;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// a counter used to create unique IDs</span></span><br><span class="line"><span class="comment">// 初始化计数器</span></span><br><span class="line">addEvent.guid = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">removeEvent</span>(<span class="params">element, type, handler</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// delete the event handler from the hash table</span></span><br><span class="line">  <span class="keyword">if</span> (element.events &amp;&amp; element.events[type]) &#123;</span><br><span class="line">    <span class="comment">// 注意这里是delete，不是赋null</span></span><br><span class="line">    <span class="keyword">delete</span> element.events[type][handler.$$guid];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 事件处理方法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">handleEvent</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// grab the event object (IE uses a global event object)</span></span><br><span class="line">  <span class="comment">// 获取事件对象(IE下获取全局事件对象)</span></span><br><span class="line">  event = event || <span class="built_in">window</span>.event;</span><br><span class="line">  <span class="comment">// get a reference to the hash table of event handlers</span></span><br><span class="line">  <span class="comment">// 获取当前类型的事件队列</span></span><br><span class="line">  <span class="keyword">var</span> handlers = <span class="keyword">this</span>.events[event.type];</span><br><span class="line">  <span class="comment">// execute each event handler</span></span><br><span class="line">  <span class="comment">//  执行每个处理函数</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i <span class="keyword">in</span> handlers) &#123;</span><br><span class="line">    <span class="keyword">this</span>.$$handleEvent = handlers[i];</span><br><span class="line">    <span class="keyword">this</span>.$$handleEvent(event);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>不知道大家注意到没有，Dean Edwards并没有使用<code>addEventListener</code>来绑定事件，触发事件也是自己实现的<code>handleEvent</code>方法，为何这样？</p>
 <p>回到最开始探究的问题（js如何绑定匿名方法事件），返回到<code>EventUtil</code>，看<code>移除注册</code>这里。注意<code>removeHandler</code>第三个参数，必须有<code>handler</code>。那么问题来了，如果绑定的时候<code>EventUtil.addHandler(doc, &#39;click&#39;, function () {})</code>，如何移除<code>click</code>事件？答案自然有了。</p>
+<h2 id="u9898_u5916_u8BDD"><a href="#u9898_u5916_u8BDD" class="headerlink" title="题外话"></a>题外话</h2><p>上面处理事件的方法，并不是完全体，最新请看<a href="http://dean.edwards.name/my/events.js" target="_blank" rel="external">这里</a>:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 调用的地方改为</span></span><br><span class="line">event = event || fixEvent(((<span class="keyword">this</span>.ownerDocument || <span class="keyword">this</span>.document || <span class="keyword">this</span>).parentWindow || <span class="built_in">window</span>).event);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fixEvent</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// add W3C standard event methods</span></span><br><span class="line">  <span class="comment">// 添加标准的W3C事件方法(主要针对IE)</span></span><br><span class="line">  <span class="comment">// 阻止浏览器默认行为</span></span><br><span class="line">  event.preventDefault = fixEvent.preventDefault;</span><br><span class="line">  <span class="comment">// 阻止冒泡</span></span><br><span class="line">  event.stopPropagation = fixEvent.stopPropagation;</span><br><span class="line">  <span class="keyword">return</span> event;</span><br><span class="line">&#125;;</span><br><span class="line">fixEvent.preventDefault = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.returnValue = <span class="literal">false</span>;</span><br><span class="line">&#125;;</span><br><span class="line">fixEvent.stopPropagation = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.cancelBubble = <span class="literal">true</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>为啥增加这个补丁（为啥要阻止这两个事件？试试给submit绑定click事件就明白了）？且看IE/FF两种事件的区别：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// IE</span></span><br><span class="line"><span class="built_in">window</span>.event.cancelBubble = <span class="literal">true</span>;<span class="comment">//停止冒泡</span></span><br><span class="line"><span class="built_in">window</span>.event.returnValue = <span class="literal">false</span>;<span class="comment">//阻止事件的默认行为</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// FF</span></span><br><span class="line">event.preventDefault();<span class="comment">//阻止事件的默认行为</span></span><br><span class="line">event.stopPropagation();<span class="comment">//阻止事件的传播</span></span><br></pre></td></tr></table></figure></p>
+<p>巧妙的解决IE下兼容问题。</p>
 
       
     </div>
@@ -247,8 +258,17 @@ DOM0事件模型DOM0事件模型就是直接在Dom对象上注册事件名称，
     
 <nav id="article-nav">
   
+    <a href="/2016/03/04/restful-guide/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Restful资源命名规范
+        
+      </div>
+    </a>
   
-    <a href="/2015/12/17/github-contribute/" id="article-nav-older" class="article-nav-link-wrap">
+  
+    <a href="/2015/12/06/github-contribute/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">github如何贡献自己的代码</div>
       <strong class="article-nav-caption">></strong>
     </a>
@@ -278,7 +298,7 @@ DOM0事件模型DOM0事件模型就是直接在Dom对象上注册事件名称，
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="js-event" data-title="深入理解JavaScript事件系统" data-url="http://b.66tools.com/2015/12/30/js-event/"></div>
+	<div class="ds-thread" data-thread-key="js-event" data-title="深入理解JavaScript事件系统" data-url="http://b.66tools.com/2015/12/29/js-event/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -303,7 +323,7 @@ DOM0事件模型DOM0事件模型就是直接在Dom对象上注册事件名称，
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2015 百 里
+    		&copy; 2016 百 里
     	</div>
       	<div class="footer-right">
       		<a href="www.miitbeian.gov.cn" target="_blank">渝ICP备15002906号</a>
