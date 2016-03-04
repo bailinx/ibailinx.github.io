@@ -1,5 +1,6 @@
 title: Restful资源命名规范
-tags: [style guide, restful, api]
+date: 2016-03-04 15:21:39
+tags: [guide, restful, api]
 categories: guide
 ---
 
